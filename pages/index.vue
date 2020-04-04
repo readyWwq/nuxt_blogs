@@ -59,7 +59,7 @@
                 <img src="../static/image/icon.jpg" alt="">
               </div>
               <div>
-                <p class="name">文章标题</p>
+                <p class="name">文章标题1</p>
                 <p>2020-04-05</p>
               </div>
             </div>
