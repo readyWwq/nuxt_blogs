@@ -59,7 +59,7 @@
                 <img src="../static/image/icon.jpg" alt="">
               </div>
               <div>
-                <p class="name">文章标题1</p>
+                <p class="name overHidden">文章标题1文章标题1文章标题1文章标题1文章标题1文章标题1文章标题1</p>
                 <p>2020-04-05</p>
               </div>
             </div>
@@ -164,7 +164,7 @@ export default {
     window.onscroll = function () {
       var t = document.documentElement.scrollTop || document.body.scrollTop; //变量t就是滚动条滚动时，到顶部的距离
      if(t>280){
-       _this.topOfset = t-280
+       _this.topOfset = t-290
        _this.show = true
      }else{
        _this.topOfset = 0
@@ -309,6 +309,7 @@ export default {
             .name{
               font-size: 12px;
               margin-bottom: 5px;
+              width: 190px;
             }
           }
           .notice{

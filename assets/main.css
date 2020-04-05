@@ -61,6 +61,13 @@ p,span{
 a:hover{
     color: var(--cursor-color);
 }
+.overHidden{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display:-webkit-box;
+    -webkit-box-orient:vertical;
+    -webkit-line-clamp:1;
+}
 .contenter{
     width: 1250px;
     margin: 0 auto;
