@@ -1,6 +1,7 @@
-/**
+/*
+/!**
  * Created by Administrator on 2020/3/7.
- */
+ *!/
 import Vue from 'vue'
 import Vuex from 'vuex'
 import user from './user';
@@ -14,4 +15,4 @@ const store = () => new Vuex.Store({
         user
     }
 })
-export default store
+export default store*/

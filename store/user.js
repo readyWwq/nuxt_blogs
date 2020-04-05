@@ -1,9 +1,14 @@
 /**
  * Created by Administrator on 2020/3/7.
  */
-const state={
-    userName:"wuwu"
+const state=()=>{
+    return{
+        userName:"wuwu"
+    }
 }
+
+
+
 const getters={
     getName:(state)=>{
         return state.userName
