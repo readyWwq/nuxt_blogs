@@ -7,7 +7,7 @@ export default function ({$axios, redirect}) {
         console.log('请求拦截' + config.url)
     })
     $axios.onResponse(response => {
-        console.log('响应拦截 ' + response.data.message)
+        console.log('响应拦截 ' + response.data)
         return response
     })
     $axios.onError(error => {

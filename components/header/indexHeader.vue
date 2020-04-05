@@ -4,20 +4,15 @@
             <ul class="nav">
                 <li class="logo"><span>一二三</span></li>
                 <li>
-                    <span>首页</span>
+                    <a href="/"><span>首页</span></a>
                 </li>
-                <li>
-                    <span  class="icon">JavaScript指南<i class="iconfont icon-tubiao-"></i></span>
-                    <ul class="nav_two">
-                        <li class="hover"><span>二级栏目</span></li>
-                        <li class="hover"><span>二级栏目</span></li>
-                        <li class="hover"><span>二级栏目</span></li>
-                        <li class="hover"><span>二级栏目</span></li>
+                <li v-for="item in list" :key="item.id">
+                    <span  class="icon">{{item.label}}<i v-if="item.children.length" class="iconfont icon-tubiao-"></i></span>
+                    <ul class="nav_two" v-if="item.children.length">
+                        <li class="hover" v-for="chi in item.children" :key="chi.id"><span>{{chi.label}}</span></li>
                     </ul>
                 </li>
-                <li>
-                    <span>小站百科</span>
-                </li>
+
             </ul>
             <div class="mobel_nav">
                 <div @click="mobles=!mobles" class="iconfont icon-caidan menu"></div>
@@ -33,9 +28,9 @@
             <div class="navList">
                 <ul class="list first">
                     <li :class="{active:item.id == leftNav.first}" v-for="item in list">
-                        <a @click.stop="firstClick(item)">{{item.label}}<i class="iconfont icon-tubiao-"></i></a>
+                        <a @click.stop="firstClick(item)">{{item.label}}<i v-if="item.children.length" class="iconfont icon-tubiao-"></i></a>
                         <ul class="child">
-                           <li @click.stop="childClick(chi.id)" :class="{active:chi.id == leftNav.child}" v-for="chi in item.children"><a>{{chi.label}}</a></li>
+                           <li @click.stop="childClick(chi.id)" :class="{active:chi.id == leftNav.child}" v-for="chi in item.children" :key="chi.id"><a>{{chi.label}}</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -62,40 +57,21 @@
                     first:1,
                     child:1,
                 },
-                list:[{
-                    id:1,
-                    label:"jsva",
-                    children:[{
-                        id:3,
-                        label:"Html"
-                    },{
-                        id:3,
-                        label:"Html"
-                    },{
-                        id:3,
-                        label:"Html"
-                    },{
-                        id:3,
-                        label:"Html"
-                    }]
-                },{
-                    id:2,
-                    label:"jsva",
-                    children:[{
-                        id:3,
-                        label:"Html"
-                    }]
-                },{
-                    id:3,
-                    label:"jsva",
-                    children:[{
-                        id:3,
-                        label:"Html"
-                    }]
-                }]
+                list:[]
             }
         },
+        created(){
+          this.getTreeList()
+        },
         methods: {
+            getTreeList() {
+                this.$axios.post('/queryColumn', {
+                    type: 2,
+                }).then((data) => {
+                    this.list = data.data.data;
+                });
+            },
+
             firstClick(item) {
                 this.active.first = item.id
                 this.leftNav.first = item.id
@@ -223,7 +199,7 @@
             height: calc(100vh - 150px);
             overflow: auto;
             .first{
-                margin-left: 100px;
+                margin-left: 80px;
                 margin-top: 20px;
                 .iconfont{
                     font-size: 12px;
@@ -239,6 +215,7 @@
                 &>li>a{
                     padding-left:  10px;
                     display: block;
+                    font-size: 14px;
                 }
                 &>li.active>a{
                     color: #E64F2A;

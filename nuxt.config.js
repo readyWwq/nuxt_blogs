@@ -37,7 +37,8 @@ module.exports = {
   */
   plugins: [
     '~/plugins/axios',
-    '~/directive/directive'
+    '~/directive/directive',
+    '~/plugins/tool',
   ],
   /*
   ** Nuxt.js dev-modules
@@ -61,7 +62,7 @@ module.exports = {
 
   proxy: {
     '/api': {
-      target: 'https://www.smartwu.top/api',//这里是需要代理的接口地址
+      target: 'http://localhost:8889/api',//这里是需要代理的接口地址
       changeOrigin: true,
       pathRewrite: {
         '^/api': '',
