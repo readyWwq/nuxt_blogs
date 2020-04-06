@@ -58,7 +58,7 @@
             <div class="card_content">
               <div class="top recommend hover" v-for="item in recommendList" :key="item.id">
                 <div class="icon">
-                  <img src="../static/image/icon.jpg" alt="">
+                  <img :src="'https://www.smartwu.top/'+item.imgurl" alt="">
                 </div>
                 <a :href="'/content/'+item.id" target="_blank">
                   <div>
@@ -114,7 +114,7 @@
             <div class="card_content">
               <div class="top message" v-for="item in commentList" :key="item.id">
                 <div class="icon">
-                  <img :src="item.image" alt="icon">
+                  <img :src="'https://www.smartwu.top/'+item.image" alt="icon">
                 </div>
                 <div class="book">
                   <p class="name"><span>{{item.userName}}</span>&nbsp;&nbsp;&nbsp;<span v-text="computedTime(item.creatTime)"></span></p>
@@ -162,7 +162,7 @@ export default {
     let list_id = route.query.list_id;
     let  paging = {
       pageNo: 1,
-      pageSize: 10,
+      pageSize: 6,
       total: 0,
       type:1,
     }
@@ -176,6 +176,7 @@ export default {
             }
     const {data:recommendList} = await app.$axios.post("/queryRecommend")
     const {data} = await app.$axios.post("/queryArtice",paging)
+    paging.total = data.data.total
     const {data:commentList} = await app.$axios.post("/queryComment",commentPaging)
     const {data:system} = await app.$axios.post("/queryChart")
     let contentNum = system.data.contentNum
@@ -196,6 +197,17 @@ export default {
       }else{
         _this.topOfset = 0
         _this.show = false
+      }
+
+      /*到底加载更多数据*/
+      if (t + $(window).height() == $(document).height()) {
+        setTimeout(() => {
+          try {
+            _this.pagingData();
+          } catch (e) {
+            console.log(e);
+          }
+        }, 100)
       }
     }
   },
@@ -222,6 +234,22 @@ export default {
       var dni = Math.floor(ile / (1000 * 60 * 60 * 24));
       this.day = dni
       return dni
+    },
+    queryArtice() {
+      let params = this.paging;
+      this.$post(this.$api.queryArtice, params).then((data) => {
+        this.list.push(...data.data);
+        this.paging.total = data.total;
+      });
+    },
+    /*分页查询*/
+    pagingData(){
+      if(this.paging.pageNo*this.paging.pageSize < this.paging.total){
+        this.paging.pageNo++;
+        this.queryArtice()
+      }else{
+        console.log("没有更多了");
+      }
     }
   }
 }

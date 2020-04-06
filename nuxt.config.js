@@ -19,7 +19,8 @@ module.exports = {
       { rel: 'stylesheet', href: '//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/atom-one-dark.min.css' }
     ],
     script:[
-      {src:"//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/highlight.min.js"}
+      {src:"//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/highlight.min.js"},
+      {src:"//code.jquery.com/jquery-2.1.1.min.js"},
     ]
   },
   /*

@@ -100,7 +100,7 @@
             <div class="list" v-for="(item,index) in messageData" :key="index">
                 <div class="left">
                     <div class="icon">
-                        <img :src="item.image" alt="">
+                        <img :src="'https://www.smartwu.top/'+item.image" alt="">
                     </div>
                 </div>
                 <div class="right">
@@ -121,7 +121,7 @@
                         <div class="list" v-for="(elem,childIndex) in item.childMessage" :key="childIndex">
                             <div class="left">
                                 <div class="icon">
-                                    <img :src="elem.image" alt="">
+                                    <img :src="'https://www.smartwu.top/'+elem.image" alt="">
                                 </div>
                             </div>
                             <div class="right">

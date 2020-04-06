@@ -16,7 +16,7 @@
             <p>{{item.abstract}}</p>
         </div>
         <div class="imgList">
-            <img :src="item.imgurl" alt="">
+            <img :src="'https://www.smartwu.top/'+item.imgurl" alt="">
         </div>
         <div class="tool">
             <div class="left">

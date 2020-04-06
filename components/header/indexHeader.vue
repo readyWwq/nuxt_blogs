@@ -8,7 +8,8 @@
                 </li>
                 <li v-for="item in list" :key="item.id">
                     <span class="icon">
-                        <a :href="item.checkUrl==1?item.href:'/?list_id='+item.id" :target="item.checkUrl==1?'_blank':''">{{item.label}}</a>
+                        <a v-if="item.children.length">{{item.label}}</a>
+                        <a v-else :href="item.checkUrl==1?item.href:'/?list_id='+item.id" :target="item.checkUrl==1?'_blank':''">{{item.label}}</a>
                         <i v-if="item.children.length" class="iconfont icon-tubiao-"></i>
                     </span>
                     <ul class="nav_two" v-if="item.children.length">
