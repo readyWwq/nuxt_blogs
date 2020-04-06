@@ -5,18 +5,18 @@
                 <img src="../../static/image/icon.jpg" alt="">
             </div>
             <div>
-                <h5>昵称</h5>
-                <p>2020-04-05</p>
+                <h5>{{item.author}}</h5>
+                <p>{{item.strTime}}</p>
             </div>
         </div>
         <div class="title">
-           <a :href="'/content/'+item"><span>#　</span>我是标题扎样我是标题扎样我是标题扎样我是标题扎样我是标题扎样我是标题扎样我是标题扎样我是标题扎样我是标题扎样我是标题扎样我是标题扎样我是标题扎样我是标题扎样我是标题扎样我是标题扎样我是标题扎样</a>
+           <a target="_blank" :href="'/content/'+item.id"><span>#　</span>{{item.articeTitle}}</a>
         </div>
         <div class="abstract">
-            <p>我是摘要我是摘要我是摘要我是摘要我是摘要我是摘要我是摘要我是摘要我是摘要</p>
+            <p>{{item.abstract}}</p>
         </div>
         <div class="imgList">
-            <img src="../../static/image/banner.jpg" alt="">
+            <img :src="item.imgurl" alt="">
         </div>
         <div class="tool">
             <div class="left">

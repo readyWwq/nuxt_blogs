@@ -23,13 +23,13 @@ html::-webkit-scrollbar-track {
     background: #ededed
 }
 @font-face {
-    font-family: 'uucn';
+   /* font-family: 'uucn';
     src:url('../static/font/01.woff') format('woff'),
     url('../static/font/remixicon.woff2') format('woff'),
-    url('../static/font/usuuu.woff') format('woff')
+    url('../static/font/usuuu.woff') format('woff')*/
 }
 body{
-    font-family: uucn !important;
+   /* font-family: uucn !important;*/
     color: var( --font-color);
     background-color: var(--body-bg);
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);

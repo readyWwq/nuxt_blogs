@@ -1,7 +1,7 @@
 {
-  "name": "nuxt_demo",
-  "version": "1.0.0",
-  "description": "My impeccable Nuxt.js project",
+  "name": "beef-noodles",
+  "version": "2.0.0",
+  "description": "只要牛肉不要面、专注前端开发，我给你讲讲前端的故事，网站建设,网站成型,网站搭建,一二三建站,手把手建站教学。。。。。。。。。。编不下去了，要是有个文案小姐姐帮忙就好了",
   "author": "readyWwq",
   "private": true,
   "scripts": {

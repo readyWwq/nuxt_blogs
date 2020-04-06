@@ -7,9 +7,14 @@
                     <a href="/"><span>首页</span></a>
                 </li>
                 <li v-for="item in list" :key="item.id">
-                    <span  class="icon">{{item.label}}<i v-if="item.children.length" class="iconfont icon-tubiao-"></i></span>
+                    <span class="icon">
+                        <a :href="item.checkUrl==1?item.href:'/?list_id='+item.id" :target="item.checkUrl==1?'_blank':''">{{item.label}}</a>
+                        <i v-if="item.children.length" class="iconfont icon-tubiao-"></i>
+                    </span>
                     <ul class="nav_two" v-if="item.children.length">
-                        <li class="hover" v-for="chi in item.children" :key="chi.id"><span>{{chi.label}}</span></li>
+                        <li class="hover" v-for="chi in item.children" :key="chi.id">
+                            <span><a :href="chi.checkUrl==1?chi.href:'/?list_id='+chi.id">{{chi.label}}</a></span>
+                        </li>
                     </ul>
                 </li>
 
@@ -65,10 +70,10 @@
         },
         methods: {
             getTreeList() {
-                this.$axios.post('/queryColumn', {
+                this.$post(this.$api.queryColumn, {
                     type: 2,
                 }).then((data) => {
-                    this.list = data.data.data;
+                    this.list = data;
                 });
             },
 

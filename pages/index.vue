@@ -16,12 +16,12 @@
           </div>
           <div class="right">
             <div class="system_tag">
-              <h3>7895</h3>
-              <h5>artice</h5>
+              <h3>{{charts.artice}}</h3>
+              <h5>Aritce</h5>
             </div>
             <div class="system_tag">
-              <h3>7895</h3>
-              <h5>PHOTO</h5>
+              <h3>{{charts.comments}}</h3>
+              <h5>Comments</h5>
             </div>
             <div class="system_tag">
               <h3><img style="width: 24px;height: 17px;" src="../static/image/china.png" alt=""></h3>
@@ -48,7 +48,7 @@
                 </div>
               </div>
               <div class="notice">
-                <p>我是通知通知他我是通知通知他我是通知通知他我是通知通知他我是通知通知他</p>
+                <p>个人博客2.0上新</p>
               </div>
               <p>@Notice</p>
             </div>
@@ -56,20 +56,22 @@
           <div class="card">
             <div class="card_top"><p>推荐</p></div>
             <div class="card_content">
-              <div class="top recommend hover" v-for="item in 6">
+              <div class="top recommend hover" v-for="item in recommendList" :key="item.id">
                 <div class="icon">
                   <img src="../static/image/icon.jpg" alt="">
                 </div>
-                <div>
-                  <p class="name overHidden">文章标题1文章标题1文章标题1文章标题1文章标题1文章标题1文章标题1</p>
-                  <p>2020-04-05</p>
-                </div>
+                <a :href="'/content/'+item.id" target="_blank">
+                  <div>
+                    <p class="name overHidden">{{item.articeTitle}}</p>
+                    <p>{{item.strTime}}</p>
+                  </div>
+                </a>
               </div>
             </div>
           </div>
         </div>
         <div class="col-6 center active">
-          <list v-for="(item,index) in 10" :item="item" :key="index"></list>
+          <list v-for="(item,index) in list" :item="item" :key="index"></list>
         </div>
         <div class="col-3 right active" :style="{top:+topOfset+'px'}">
           <div class="card">
@@ -80,28 +82,28 @@
                   <div class="system_list">
                     <i class="iconfont icon-zuozhe"></i>
                     <span class="name">留言条数</span>
-                    <span class="number">36条</span>
+                    <span class="number">{{charts.comments}}条</span>
                   </div>
                 </li>
                 <li>
                   <div class="system_list">
-                    <i class="iconfont icon-chakangengduo"></i>
-                    <span class="name">留言条数</span>
-                    <span class="number">36条</span>
+                    <i class="iconfont icon-wenzhang"></i>
+                    <span class="name">文章数量</span>
+                    <span class="number">{{charts.artice}}篇</span>
                   </div>
                 </li>
                 <li>
                   <div class="system_list">
-                    <i class="iconfont icon-ziyuan"></i>
-                    <span class="name">留言条数</span>
-                    <span class="number">306条</span>
+                    <i class="iconfont icon-icon"></i>
+                    <span class="name">用户数量</span>
+                    <span class="number">{{charts.user}}</span>
                   </div>
                 </li>
                 <li>
                   <div class="system_list">
-                    <i class="iconfont icon-liuyanhui"></i>
-                    <span class="name">留言条数</span>
-                    <span class="number">0条</span>
+                    <i class="iconfont icon-yunhang"></i>
+                    <span class="name">运行天数</span>
+                    <span class="number">{{day}}天</span>
                   </div>
                 </li>
               </ul>
@@ -110,14 +112,14 @@
           <div class="card">
             <div class="card_top"><p>最近留言</p></div>
             <div class="card_content">
-              <div class="top message" v-for="item in 6">
+              <div class="top message" v-for="item in commentList" :key="item.id">
                 <div class="icon">
-                  <img src="../static/image/icon.jpg" alt="">
+                  <img :src="item.image" alt="icon">
                 </div>
                 <div class="book">
-                  <p class="name"><span>用户名</span>&nbsp;&nbsp;&nbsp;<span>一天前</span></p>
+                  <p class="name"><span>{{item.userName}}</span>&nbsp;&nbsp;&nbsp;<span v-text="computedTime(item.creatTime)"></span></p>
                   <div class="message_book">
-                    <p>我是留言内容</p>
+                    <p v-html="item.title"></p>
                   </div>
                 </div>
               </div>
@@ -153,13 +155,35 @@ export default {
       active:true,
       topOfset:0,
       show:false,
+      day:0
     }
   },
-  async asyncData({app}){
-    //得到栏目列表queryRecommend
-    const {data} = await app.$axios.post("/queryArtice",{pageNo: 1,pageSize: 1,total: 25,type: 1})
-    console.log(data.data.data);
-    return {list:data.data.data}
+  async asyncData({app,route}){
+    let list_id = route.query.list_id;
+    let  paging = {
+      pageNo: 1,
+      pageSize: 10,
+      total: 0,
+      type:1,
+    }
+    if(list_id){
+      paging.columnId = list_id
+    }
+    let commentPaging = {
+              pageNo: 1,
+              pageSize: 6,
+              articeId:0
+            }
+    const {data:recommendList} = await app.$axios.post("/queryRecommend")
+    const {data} = await app.$axios.post("/queryArtice",paging)
+    const {data:commentList} = await app.$axios.post("/queryComment",commentPaging)
+    const {data:system} = await app.$axios.post("/queryChart")
+    let contentNum = system.data.contentNum
+    let charts = {artice:contentNum.artice,user:contentNum.user,comments:contentNum.comments}
+    return {list:data.data.data,paging,recommendList:recommendList.data,commentList:commentList.data.data,charts}
+  },
+  created(){
+    this.runDay()
   },
   mounted () {
     //t = 280px
@@ -183,6 +207,21 @@ export default {
     },
     goTop(){
       window.scroll(0,0)
+    },
+    computedTime(time){
+      let d = time;
+      if (typeof time === "string") {
+        d = new Date(time).getTime()
+      }
+      return this.$tool.timeago(d)
+    },
+    runDay(){
+      var urodz= new Date("2019-04-01");
+      var now = new Date();
+      var ile = now.getTime() - urodz.getTime();
+      var dni = Math.floor(ile / (1000 * 60 * 60 * 24));
+      this.day = dni
+      return dni
     }
   }
 }
@@ -198,7 +237,7 @@ export default {
     position: relative;
     .banner_img{
       min-height: 200px;
-      background: url("../static/image/banner.jpg");
+      background: url("../static/image/banner.png");
       background-size: cover;
       background-position: center center;
       position: relative;
@@ -242,7 +281,7 @@ export default {
         align-items: center;
         margin: 20px 0;
         .system_tag{
-          padding: 0 30px;
+          padding: 0 20px;
           text-align: center;
           position: relative;
           &::after{
@@ -260,8 +299,8 @@ export default {
             color:var(--font-abs-color) ;
           }
           .qq{
-            font-size: 18px;
-            padding: 10px;
+            font-size: 16px;
+            padding: 10px 6px;
             background-color: var(--cursor-color);
             border-radius: 6px;
             color: white;

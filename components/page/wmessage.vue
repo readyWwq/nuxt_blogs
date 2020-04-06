@@ -427,15 +427,15 @@
               }
             },
             addComment(params,f){
-                this.$axios.post('/addComment', params).then((data) => {
+                this.$post('/addComment', params).then((data) => {
                     f()
                 });
             },
 
             getList(){
                 this.paging['articeId'] = this.articeId;
-                this.$axios.post("/queryComment", this.paging).then((data) => {
-                    let arr = data.data.data.data
+                this.$post("/queryComment", this.paging).then((data) => {
+                    let arr = data.data
                     arr.forEach(itme=>{
                         itme["childMessage"] = [];
                         itme["open"] = false;
@@ -465,8 +465,8 @@
                         pageSize: 500,
                         messageId:item.id
                     }
-                    this.$axios.post('/queryCommentChild', params).then((data) => {
-                        this.messageData[index].childMessage.push(...data.data.data.data)
+                    this.$post('/queryCommentChild', params).then((data) => {
+                        this.messageData[index].childMessage.push(...data.data)
                         item.open = true;
                     });
                 }else{
@@ -480,7 +480,7 @@
                 this.setToast({show:true,icon:"warning",title:"已经赞过啦"})
                 return
               }
-                this.$axios.post('/clickLikes', {id:item.id}).then((data) => {
+                this.$post('/clickLikes', {id:item.id}).then((data) => {
                     this.likesId.push(item.id)
                     item["likeActive"] = true;
                     item.likes++

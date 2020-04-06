@@ -5,7 +5,7 @@
                 <div class="title" v-text="artieData.articeTitle"></div>
                 <div class="other">
                     <div class="time"><i class="iconfont icon-zuozhe"></i>作者：<span v-text="artieData.author"></span></div>
-                    <div class="time"><i class="el-icon-time"></i>发布时间：<span v-text="artieData.strTime"></span></div>
+                    <div class="time"><i class="iconfont icon-yunhang"></i>发布时间：<span v-text="artieData.strTime"></span></div>
                     <div class="check"><i class="iconfont icon-chakangengduo"></i><span v-text="artieData.clickNumber"></span>人已阅读</div>
                 </div>
                 <div class="des">
@@ -13,20 +13,22 @@
                     <span v-text="artieData.abstract"></span>
                 </div>
                 <div class="artice" v-highlight v-html="artieData.content"></div>
-                <wmessage></wmessage>
+                <wmessage :articeId="articeId"></wmessage>
             </div>
             <div class="left">
                 <div class="card">
                     <div class="card_top"><p>相关推荐</p></div>
                     <div class="card_content">
-                        <div class="top recommend hover" v-for="item in 6">
+                        <div class="top recommend hover" v-for="item in recommendList" :key="item.id">
                             <div class="icon">
-                                <img src="~/static/image/icon.jpg" alt="">
+                                <img src="../../static/image/icon.jpg" alt="">
                             </div>
-                            <div>
-                                <p class="name overHidden">文章标题1文章标题1文章标题1文章标题1文章标题1文章标题1文章标题1</p>
-                                <p>2020-04-05</p>
-                            </div>
+                            <a :href="'/content/'+item.id" target="_blank">
+                                <div>
+                                    <p class="name overHidden">{{item.articeTitle}}</p>
+                                    <p>{{item.strTime}}</p>
+                                </div>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -45,21 +47,16 @@
         },
         data() {
             return {
-                artieData:{
-                    articeTitle:'我是标题',
-                    author:"作者",
-                    strTime:"20-25-03",
-                    clickNumber:"15",
-                    abstract:"简介",
-                    content:"<pre><code><p><presource code=\"\" pro';font-size:12.0pt;\"=\"\"><presource code=\"\" pro';font-size:12.0pt;\"=\"\"><presource code=\"\" pro';font-size:12.0pt;\"=\"\"><span class=\"hljs-comment\">/**</span><br><span class=\"hljs-comment\"> * Created by dev2 on 2019/11/13.</span><br><span class=\"hljs-comment\"> * state.js //</span><pre宋体';font-size:12.0pt;\"><span class=\"hljs-comment\">定义的数据</span><spansource code=\"\" pro';\"=\"\"><span class=\"hljs-comment\">js文件</span></spansource></pre宋体';font-size:12.0pt;\"><br><span class=\"hljs-comment\"> */</span></presource><br><br><span class=\"hljs-keyword\">var</span> states = {<br>  userState: {<br>    count: <span class=\"hljs-number\">1</span>,<br>    add: {<br>      index: <span class=\"hljs-number\">1</span>,<br>      push: <span class=\"hljs-number\">1</span><br>    }<br>  }<br>}<br><span class=\"hljs-keyword\">export</span> {<br>  states<br>}<br></presource></presource></p><p><presource code=\"\" pro';font-size:12.0pt;\"=\"\"><presource code=\"\" pro';font-size:12.0pt;\"=\"\"><br></presource></presource></p><p><presource code=\"\" pro';font-size:12.0pt;\"=\"\"><span class=\"hljs-comment\">/**</span><br><span class=\"hljs-comment\"> * Created by dev2 on 2019/11/13.</span><br><span class=\"hljs-comment\"> * userState.js</span><br><span class=\"hljs-comment\"> */</span></presource></p><p><presource code=\"\" pro';font-size:12.0pt;\"=\"\"><presource code=\"\" pro';font-size:12.0pt;\"=\"\"><span class=\"hljs-keyword\">const</span> {states} = <span class=\"hljs-built_in\">require</span>(<span class=\"hljs-string\">'./state'</span>)</presource><br></presource></p><p><span style=\"font-family: Avenir, Helvetica, Arial, sans-serif;\"><span class=\"hljs-keyword\">export</span> <span class=\"hljs-keyword\">const</span> userState = {</span><br></p><p><presource code=\"\" pro';font-size:12.0pt;\"=\"\">  state: states.userState,<br>mutations: {</presource></p><p><presource code=\"\" pro';font-size:12.0pt;\"=\"\"><presource code=\"\" pro';font-size:12.0pt;\"=\"\"> <span class=\"hljs-comment\">//</span><span宋体';\"><span class=\"hljs-comment\">这里是恢复的方法 </span></span宋体';\"></presource><pre宋体';font-size:12.0pt;\"><span class=\"hljs-comment\">将</span><spansource code=\"\" pro';\"=\"\"><span class=\"hljs-comment\">storage的数据恢复到</span><spansource code=\"\" pro';\"=\"\"><span class=\"hljs-comment\">state</span></spansource></spansource></pre宋体';font-size:12.0pt;\"><br><span class=\"hljs-comment\">    setUserInit (state, data = {}) {</span><br><span class=\"hljs-comment\">      for (let key in data) {</span><br><span class=\"hljs-comment\">        state[key] = data[key]</span><br><span class=\"hljs-comment\">      }</span><br><span class=\"hljs-comment\">    }</span><br><span class=\"hljs-comment\">  }</span><br><span class=\"hljs-comment\">}</span><br></presource>\n" +
-                        "\n" +
-                        "<span class=\"hljs-comment\">/**</span><br><span class=\"hljs-comment\"> * Created by dev2 on 2019/11/13.</span><br><span class=\"hljs-comment\"> * entry.js //</span><pre宋体';font-size:12.0pt;\"><span class=\"hljs-comment\">入口文件</span></pre宋体';font-size:12.0pt;\"><br><span class=\"hljs-comment\"> */</span>\n" +
-                        "\n" +
-                        "</p><p><span class=\"hljs-keyword\">const</span> { store } = <span class=\"hljs-built_in\">require</span>(<span class=\"hljs-string\">'./store'</span>)</p><p><span style=\"font-family: Avenir, Helvetica, Arial, sans-serif;\"><span class=\"hljs-keyword\">const</span> storage = weex.requireModule(<span class=\"hljs-string\">'storage'</span>)</span></p><p><span class=\"hljs-keyword\">new</span> Vue(Vue.util.extend({el: <span class=\"hljs-string\">'#root'</span>, store}, App))</p><p><span class=\"hljs-comment\">/*这是weex提供的storage获取方法*/</span></p>storage.getItem(<span class=\"hljs-string\">'VUEX'</span>, <span class=\"hljs-function\"><span class=\"hljs-keyword\">function</span> (<span class=\"hljs-params\">event</span>) </span>{<br>  <span class=\"hljs-keyword\">if</span> (event.result === <span class=\"hljs-string\">'success'</span> &amp;&amp; event.data) {<br>    <span class=\"hljs-keyword\">var</span> datas = <span class=\"hljs-built_in\">JSON</span>.parse(event.data)\n" +
-                        "    store.commit(<span class=\"hljs-string\">'setUserInit'</span>, datas.userState)<span style=\"font-family: Avenir, Helvetica, Arial, sans-serif;\">   <span class=\"hljs-comment\">//调用恢复数据的mutations方法</span></span><br><span class=\"hljs-comment\">  }</span><br><span class=\"hljs-comment\">})</span></code></pre>"
-                }
+
             }
         },
+        async asyncData({app,route}){
+            let articeId = route.params.id;
+            const {data:recommendList} = await app.$axios.post("/queryRecommend")
+            const {data} = await app.$axios.post("/articeInfo",{id:articeId})
+            app.head.title = data.data.articeTitle+"-"+process.env.npm_package_name
+            return {artieData:data.data,articeId:Number(articeId),recommendList:recommendList.data}
+        }
     }
 </script>
 
