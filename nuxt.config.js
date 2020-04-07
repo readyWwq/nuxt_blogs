@@ -12,7 +12,7 @@ module.exports = {
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { hid: 'keywords', name: 'keywords', content: '只要牛肉不要面,专注前端开发，我给你讲讲前端的故事，网站建设,网站成型,网站搭建,一二三建站,个人网站模板,网站模板下载'},
-      { hid: 'description', name: 'description', content: process.env.npm_package_description || '' },
+      { hid: 'description', name: 'description', content: process.env.npm_package_description || '' }
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
@@ -40,7 +40,7 @@ module.exports = {
     '~/plugins/axios',
     '~/directive/directive',
     '~/plugins/tool',
-    '~/plugins/api',
+    '~/plugins/api'
   ],
   /*
   ** Nuxt.js dev-modules
@@ -67,7 +67,7 @@ module.exports = {
       target: 'https://www.smartwu.top/api',//这里是需要代理的接口地址
       changeOrigin: true,
       pathRewrite: {
-        '^/api': '',
+        '^/api': ''
       }
     }
   },
@@ -86,6 +86,7 @@ module.exports = {
     }
   },
   server:{
+    host:'172.20.10.10',
     port:8000
   }
 }

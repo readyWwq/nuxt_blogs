@@ -198,7 +198,6 @@ export default {
         _this.topOfset = 0
         _this.show = false
       }
-
       /*到底加载更多数据*/
      _this.ifBottom()
     }
@@ -286,7 +285,7 @@ export default {
       if(getScrollTop() + getWindowHeight() == getScrollHeight()){
        this.pagingData()
       }
-    },
+    }
   }
 }
 </script>

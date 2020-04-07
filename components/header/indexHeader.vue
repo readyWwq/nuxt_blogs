@@ -86,7 +86,7 @@
                 this.active.child = id
                 this.leftNav.child = id
             }
-        },
+        }
     }
 </script>
 
