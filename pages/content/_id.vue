@@ -21,7 +21,7 @@
                     <div class="card_content">
                         <div class="top recommend hover" v-for="item in recommendList" :key="item.id">
                             <div class="icon">
-                                <img src="../../static/image/icon.jpg" alt="">
+                                <img :src="'https://www.smartwu.top/'+item.imgurl" alt="">
                             </div>
                             <a :href="'/content/'+item.id" target="_blank">
                                 <div>

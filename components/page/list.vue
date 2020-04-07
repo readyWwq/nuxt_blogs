@@ -20,8 +20,8 @@
         </div>
         <div class="tool">
             <div class="left">
+                <div><p><i class="iconfont icon-liuyan"></i>{{item.clickNumber}}</p></div>
                 <div><p><i class="iconfont icon-liuyan"></i>15</p></div>
-                <div><p><i class="iconfont icon-ziyuan"></i>15</p></div>
             </div>
             <div class="right">
                 <p class="tag">#javaScript</p>
