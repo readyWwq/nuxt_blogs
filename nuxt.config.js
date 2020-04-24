@@ -19,7 +19,8 @@ module.exports = {
       { rel: 'stylesheet', href: '//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/atom-one-dark.min.css' }
     ],
     script:[
-      {src:"//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/highlight.min.js"}
+      {src:"//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/highlight.min.js"},
+      {src:"/_nuxt/static/widget/source/autoload.js"}
     ]
   },
   /*
@@ -86,7 +87,7 @@ module.exports = {
     }
   },
   server:{
-    host:'172.20.10.10',
-    port:8000
+    /*host:'172.20.10.10',*/
+    port:7000
   }
 }
