@@ -5,7 +5,7 @@
       <nuxt />
     </div>
 
-    <div class="footer">
+    <div class="footer" id="footer">
       Copyright 2018 by wuwanqiang&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;渝ICP备19006911号-1
     </div>
   </div>
@@ -18,6 +18,20 @@
     components: {
       indexHeader
     },
+    mounted(){
+      this.init()
+    },
+    methods:{
+      init(){
+        function hasScrollbar() {
+          return document.body.scrollHeight > (window.innerHeight || document.documentElement.clientHeight);
+        }
+        console.log(hasScrollbar());
+        if(!hasScrollbar()){
+          document.getElementById('footer').style.position = "fixed"
+        }
+      }
+    }
   }
 </script>
 
@@ -29,5 +43,7 @@
     text-align: center;
     font-size: 12px;
     line-height: 50px;
+    width: 100%;
+    bottom: 0;
   }
 </style>

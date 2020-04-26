@@ -20,7 +20,7 @@ module.exports = {
     ],
     script:[
       {src:"//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/highlight.min.js"},
-      {src:"/_nuxt/static/widget/source/autoload.js"}
+      {src:"/widget/source/autoload.js"}
     ]
   },
   /*
