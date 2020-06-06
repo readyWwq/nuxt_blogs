@@ -5,6 +5,9 @@ module.exports = {
   ** Headers of the page
   * <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/atom-one-dark.min.css">
   * <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/highlight.min.js"></script>
+  *
+  *
+  *  看板娘插件： {src:"/widget/source/autoload.js"}
   */
   head: {
     title: process.env.npm_package_name || '',
@@ -19,8 +22,7 @@ module.exports = {
       { rel: 'stylesheet', href: '//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/atom-one-dark.min.css' }
     ],
     script:[
-      {src:"//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/highlight.min.js"},
-      {src:"/widget/source/autoload.js"}
+      {src:"//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/highlight.min.js"}
     ]
   },
   /*
