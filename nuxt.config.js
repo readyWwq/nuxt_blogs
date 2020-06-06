@@ -65,7 +65,7 @@ module.exports = {
 
   proxy: {
     '/api': {
-      target: 'https://www.smartwu.top/api',//这里是需要代理的接口地址
+      target: 'http://39.99.193.63:8000/api',//这里是需要代理的接口地址
       changeOrigin: true,
       pathRewrite: {
         '^/api': ''
@@ -87,7 +87,7 @@ module.exports = {
     }
   },
   server:{
-    /*host:'172.20.10.10',*/
+    host:'192.168.31.239',
     port:7000
   }
 }
