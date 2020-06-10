@@ -26,7 +26,6 @@
         function hasScrollbar() {
           return document.body.scrollHeight > (window.innerHeight || document.documentElement.clientHeight);
         }
-        console.log(hasScrollbar());
         if(!hasScrollbar()){
           document.getElementById('footer').style.position = "fixed"
         }
