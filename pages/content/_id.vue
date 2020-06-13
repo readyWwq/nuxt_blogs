@@ -59,7 +59,11 @@
         }
     }
 </script>
-
+<style>
+    .artice img{
+        max-width: 100%;
+    }
+</style>
 <style scoped lang="less">
     .contenter{
         overflow: hidden;
@@ -116,6 +120,9 @@
             margin-top: 20px;
             letter-spacing: 1px;
             text-align: justify;
+            img{
+                max-width: 100%;
+            }
         }
     }
     .card{
