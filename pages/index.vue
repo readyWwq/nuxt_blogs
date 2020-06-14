@@ -114,7 +114,7 @@
             <div class="card_content">
               <div class="top message" v-for="item in commentList" :key="item.id">
                 <div class="icon">
-                  <img :src="'http://39.99.193.63:8889'+item.image" alt="icon">
+                  <img :src="item.image" alt="icon">
                 </div>
                 <div class="book">
                   <p class="name"><span>{{item.userName}}</span>&nbsp;&nbsp;&nbsp;<span v-text="computedTime(item.creatTime)"></span></p>
