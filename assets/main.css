@@ -102,3 +102,10 @@ a:hover{
 .page-enter, .page-leave-active {
     opacity: 0;
 }
+
+pre{
+    overflow: auto;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    font-weight: 600;
+}
