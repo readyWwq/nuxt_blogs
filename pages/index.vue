@@ -58,7 +58,7 @@
             <div class="card_content">
               <div class="top recommend hover" v-for="item in recommendList" :key="item.id">
                 <div class="icon">
-                  <img :src="'http://39.99.193.63:8889'+item.imgurl" alt="">
+                  <img :src="imgStr(item.imgurl)" alt="">
                 </div>
                 <a :href="'/content/'+item.id" target="_blank">
                   <div>
@@ -205,6 +205,9 @@ export default {
   methods:{
     ...mapActions('user',['restName']),
     ...mapMutations('user',['setName']),
+    imgStr(url){
+      return url?url.split(',')[0]:''
+    },
     change(){
       this.restName("456")
     },

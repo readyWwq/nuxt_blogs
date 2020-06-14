@@ -67,7 +67,7 @@ module.exports = {
 
   proxy: {
     '/api': {
-      target: 'http://39.99.193.63:8000/api',//这里是需要代理的接口地址
+      target: 'http://39.99.193.63:8000/api',//这里是需要代理的接口地址 http://localhost:8889/api   http://39.99.193.63:8000/api
       changeOrigin: true,
       pathRewrite: {
         '^/api': ''

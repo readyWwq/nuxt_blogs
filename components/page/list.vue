@@ -16,7 +16,9 @@
             <p>{{item.abstract}}</p>
         </div>
         <div class="imgList">
-            <img :src="'http://39.99.193.63:8889'+item.imgurl" alt="">
+            <div v-for="(img,inx) in imgArr(item.imgurl)" :key="inx" >
+                <img :src="img" alt="">
+            </div>
         </div>
         <div class="tool">
             <div class="left">
@@ -36,6 +38,11 @@
     export default {
         name: "list",
         props:["item"],
+        methods: {
+            imgArr(str) {
+                return str?str.split(','):[]
+            }
+        },
     }
 </script>
 
@@ -67,6 +74,15 @@
     }
     .abstract{
         margin-bottom: 10px;
+    }
+    .imgList{
+        display: flex;
+        flex-wrap: wrap;
+        &>div{
+            flex: 1;
+            min-width:33%;
+            padding: 5px;
+        }
     }
     .imgList img{
         max-width: 100%;
