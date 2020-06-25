@@ -22,13 +22,11 @@
         </div>
         <div class="tool">
             <div class="left">
-                <div><p><i class="iconfont icon-liuyan"></i>{{item.clickNumber}}</p></div>
-                <div><p><i class="iconfont icon-liuyan"></i>15</p></div>
+                <div><p><i class="iconfont el-icon-view"></i>{{item.clickNumber}}</p></div>
+                <div><p><i class="iconfont icon-liuyan"></i>{{item.commentNum}}</p></div>
             </div>
             <div class="right">
-                <p class="tag">#javaScript</p>
-                <p class="tag">#HTML</p>
-                <p class="tag">#css3</p>
+                <p class="tag" v-for="tag in item.tags" :key="tag.id">#{{tag.tag_name}}</p>
             </div>
         </div>
     </div>
