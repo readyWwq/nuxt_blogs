@@ -22,7 +22,7 @@
         </div>
         <div class="tool">
             <div class="left">
-                <div><p><i class="iconfont el-icon-view"></i>{{item.clickNumber}}</p></div>
+                <div><p><i class="iconfont icon-chakangengduo"></i>{{item.clickNumber}}</p></div>
                 <div><p><i class="iconfont icon-liuyan"></i>{{item.commentNum}}</p></div>
             </div>
             <div class="right">
