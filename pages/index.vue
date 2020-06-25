@@ -176,6 +176,7 @@ export default {
             }
     const {data:recommendList} = await app.$axios.post("/queryRecommend")
     const {data} = await app.$axios.post("/queryArtice",paging)
+    console.log(data);
     paging.total = data.data.total
     const {data:commentList} = await app.$axios.post("/queryComment",commentPaging)
     const {data:system} = await app.$axios.post("/queryChart")
