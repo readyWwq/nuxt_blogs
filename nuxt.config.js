@@ -19,10 +19,11 @@ module.exports = {
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-      { rel: 'stylesheet', href: '//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/atom-one-dark.min.css' }
+      { rel: 'stylesheet', href: '/css/github-markdown.min.css' },
+      { rel: 'stylesheet', href: '/css/atom-one-dark.min.css' }
     ],
     script:[
-      {src:"//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/highlight.min.js"}
+      {src:"/highlight.min.js"}
     ]
   },
   /*
@@ -67,7 +68,7 @@ module.exports = {
 
   proxy: {
     '/api': {
-      target: 'http://39.99.193.63:8000/api',//这里是需要代理的接口地址 http://localhost:8889/api   http://39.99.193.63:8000/api
+      target: 'http://39.99.193.63:8889/api',//这里是需要代理的接口地址 http://localhost:8889/api   http://39.99.193.63:8000/api
       changeOrigin: true,
       pathRewrite: {
         '^/api': ''
@@ -89,7 +90,7 @@ module.exports = {
     }
   },
   server:{
-    host:'192.168.31.239',
-    port:7000
+    host:'0.0.0.0',
+    port:8000
   }
 }

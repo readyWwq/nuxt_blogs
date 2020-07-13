@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="contenter">
+        <div class="contenter markdown-body">
             <div class="articeContent">
                 <div class="title" v-text="artieData.articeTitle"></div>
                 <div class="other">
