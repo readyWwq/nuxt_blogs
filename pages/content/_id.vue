@@ -85,7 +85,7 @@
     .articeContent{
         width: calc(100% - 330px);
         margin-left: 330px;
-        padding: 10px;
+        padding: 20px;
         box-sizing: border-box;
         .title{
             text-align: left;
