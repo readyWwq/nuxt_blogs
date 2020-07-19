@@ -72,6 +72,7 @@
         </div>
         <div class="col-6 center active">
           <list v-for="(item,index) in list" :item="item" :key="index"></list>
+          <div class="more" @click="pagingData">{{moreText}}</div>
         </div>
         <div class="col-3 right active" :style="{top:+topOfset+'px'}">
           <div class="card">
@@ -155,7 +156,8 @@ export default {
       active:true,
       topOfset:0,
       show:false,
-      day:0
+      day:0,
+      moreText:'加载更多数据'
     }
   },
   async asyncData({app,route}){
@@ -176,7 +178,6 @@ export default {
             }
     const {data:recommendList} = await app.$axios.post("/queryRecommend")
     const {data} = await app.$axios.post("/queryArtice",paging)
-    console.log(data);
     paging.total = data.data.total
     const {data:commentList} = await app.$axios.post("/queryComment",commentPaging)
     const {data:system} = await app.$axios.post("/queryChart")
@@ -199,8 +200,6 @@ export default {
         _this.topOfset = 0
         _this.show = false
       }
-      /*到底加载更多数据*/
-     _this.ifBottom()
     }
   },
   methods:{
@@ -243,51 +242,7 @@ export default {
         this.paging.pageNo++;
         this.queryArtice()
       }else{
-        console.log("没有更多了");
-      }
-    },
-    ifBottom(){
-      //滚动条在Y轴上的滚动距离
-      function getScrollTop(){
-        var scrollTop = 0, bodyScrollTop = 0, documentScrollTop = 0;
-        if(document.body){
-          bodyScrollTop = document.body.scrollTop;
-        }
-        if(document.documentElement){
-          documentScrollTop = document.documentElement.scrollTop;
-        }
-        scrollTop = (bodyScrollTop - documentScrollTop > 0) ? bodyScrollTop : documentScrollTop;
-        return scrollTop;
-      }
-
-//文档的总高度
-
-      function getScrollHeight(){
-        var scrollHeight = 0, bodyScrollHeight = 0, documentScrollHeight = 0;
-        if(document.body){
-          bodyScrollHeight = document.body.scrollHeight;
-        }
-        if(document.documentElement){
-          documentScrollHeight = document.documentElement.scrollHeight;
-        }
-        scrollHeight = (bodyScrollHeight - documentScrollHeight > 0) ? bodyScrollHeight : documentScrollHeight;
-        return scrollHeight;
-      }
-
-//浏览器视口的高度
-
-      function getWindowHeight(){
-        var windowHeight = 0;
-        if(document.compatMode == "CSS1Compat"){
-          windowHeight = document.documentElement.clientHeight;
-        }else{
-          windowHeight = document.body.clientHeight;
-        }
-        return windowHeight;
-      }
-
-      if(getScrollTop() + getWindowHeight() == getScrollHeight()){
-       this.pagingData()
+        this.moreText = '-----数据加载完了-----'
       }
     }
   }
@@ -469,6 +424,19 @@ export default {
       width: calc(100% - 570px);
       margin-left: 285px;
       min-height: calc(100vh - 320px);
+      .more{
+        width: 100%;
+        text-align: center;
+        background-color: var(--cursor-color);
+        color: white;
+        padding: 10px;
+        font-size: 14px;
+        opacity: .8;
+        cursor: pointer;
+        &:hover{
+          opacity: .6;
+        }
+      }
     }
     .right{
       margin-left: 10px;

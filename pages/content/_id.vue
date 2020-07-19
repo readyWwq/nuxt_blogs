@@ -64,9 +64,21 @@
         },
     }
 </script>
-<style>
+<style lang="less">
     .artice img{
         max-width: 100%;
+    }
+    .artice{
+        h1,h2,h3,h4,h5{
+            margin: 10px 0;
+        }
+        a{
+            color: var(--cursor-color);
+        }
+        ul{
+            padding: 5px 15px;
+        }
+        li{}
     }
 </style>
 <style scoped lang="less">

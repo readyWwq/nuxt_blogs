@@ -90,7 +90,7 @@ module.exports = {
     }
   },
   server:{
-    host:'0.0.0.0',
+    host:'172.20.10.10',
     port:8000
   }
 }
