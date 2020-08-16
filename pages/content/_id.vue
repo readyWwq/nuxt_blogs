@@ -69,6 +69,9 @@
         max-width: 100%;
     }
     .artice{
+        .hljs{
+            font-family: SFMono-Regular,Consolas,"Liberation Mono",Menlo,Courier,monospace;
+        }
         h1,h2,h3,h4,h5{
             margin: 10px 0;
         }

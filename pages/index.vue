@@ -161,6 +161,7 @@ export default {
     }
   },
   async asyncData({app,route}){
+    app.head.title = 'Ai-Lion'
     let list_id = route.query.list_id;
     let  paging = {
       pageNo: 1,
